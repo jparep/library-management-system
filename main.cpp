@@ -37,4 +37,14 @@ private:
             }
             file.close();
         }
-}
+    }
+
+    void savebooks() const {
+        std::ofstream file("books.txt");
+        if (file.is_open()) {
+            for (const auto& book : books) {
+                file << book.id << '|' << book.title << '|' << book.author << '|' << book.is_borrowed << '\n';
+            }
+            file.close();
+        }
+    }
