@@ -26,5 +26,15 @@ class Library {
 private:
     std::vector<Book> books;
 
-    
+    void loadbooks() {
+        std::ifstream file("books.txt");
+        if (file.is_open()) {
+            int id;
+            std::string title, author;
+            bool is_borrowed;
+            while (file >> id >> std::ws && std::getline(file, title, '|') && std::getline(file, author, '|') && file >> is_borrowed) {
+                books.emplace_back(id, title, author, is_borrowed);
+            }
+            file.close();
+        }
 }
