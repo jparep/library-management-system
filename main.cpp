@@ -9,5 +9,8 @@ public:
     std::string title;
     std::string author;
     bool is_borrowed;
-    // Constructor  
-{
+
+    // Constructor 
+    Book(int id, const std::string& title), std::string& author, bool is_borrowed=false)
+        : id(id), tittle(title), author(author), is_borrowed(is_borrow){}
+    {
