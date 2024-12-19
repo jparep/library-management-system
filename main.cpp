@@ -20,3 +20,11 @@ public:
                   << " | Status: " << (is_borrowed ? "Borrowed" : "Available") << '\n';
     }
 };
+
+
+class Library {
+private:
+    std::vector<Book> books;
+
+    
+}
