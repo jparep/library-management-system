@@ -1,0 +1,24 @@
+# Compiled binary files
+library_management_system
+*.exe
+*.out
+*.o
+
+# Text file storing book data
+books.txt
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# C++ build files
+*.obj
+*.log
+*.d
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+.idea/
+*.iml
