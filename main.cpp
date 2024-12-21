@@ -59,3 +59,8 @@ public:
     ~Library() {
         savebooks();
     }
+
+    void addBook(const Book& book) {
+        books.push_back(book);
+        std::cout << "Book added successfully."\n
+    }
