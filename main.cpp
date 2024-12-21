@@ -56,3 +56,6 @@ public:
     }
     
     // Destructor
+    ~Library() {
+        savebooks();
+    }
