@@ -64,3 +64,13 @@ public:
         books.push_back(book);
         std::cout << "Book added successfully."\n
     }
+
+    void displayBooks() const {
+        if (books.empty()) {
+            std::cout << "No books found in the libaary." << '\n';
+            return;
+        }
+        for (const auto& book: books) {
+            book.display();
+        }
+    }
