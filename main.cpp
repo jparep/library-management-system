@@ -48,3 +48,11 @@ private:
             file.close();
         }
     }
+
+public:
+    // Constructor
+    Library() {
+        loadbooks();
+    }
+    
+    // Destructor
