@@ -89,3 +89,19 @@ public:
         }
         std::cout << "Book with ID " << book_id << " not found.\n";
     }
+
+    void returnBook(int book_id) {
+        for (auto& book : books) {
+            if (book.id == book_id) {
+                if (book.is_borrowed) {
+                    book.is_borrowed = false;
+                    std::cout << "You have returned the book: " << book.title << "\n";
+                } else {
+                    std::cout << "The book was not borrowed.\n";
+                }
+                return;
+            }
+        }
+        std::cout << "Book with ID " << book_id << " not found.\n";
+    }
+};
