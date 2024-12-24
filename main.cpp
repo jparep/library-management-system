@@ -74,3 +74,18 @@ public:
             book.display();
         }
     }
+
+    void borrowBook(int book_id) {
+        for (auto& book : books) {
+            if (book.id == book_id) {
+                if (!book.is_borrowed) {
+                    book.is_borrowed = true;
+                    std::cout << "You have borrowed the book: " << book.title << "\n";
+                } else {
+                    std::cout << "Sorry, the book is already borrowed.\n";
+                }
+                return;
+            }
+        }
+        std::cout << "Book with ID " << book_id << " not found.\n";
+    }
