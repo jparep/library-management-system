@@ -105,3 +105,61 @@ public:
         std::cout << "Book with ID " << book_id << " not found.\n";
     }
 };
+
+int main() {
+    Library library;
+    int choice;
+
+
+    do {
+        std::cout << "\nLibrary Management System\n";
+        std::cout << "1. Add Book\n";
+        std::cout << "2. Display Books\n";
+        std::cout << "3. Borrow Book\n";
+        std::cout << "4. Return Book\n";
+        std::cout << "5. Exit\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+
+        switch (choice) {
+        case 1: {
+            int id;
+            std::string title, author;
+            std::cout << "Enter Book ID: ";
+            std::cin >> id;
+            std::cin.ignore();
+            std::cout << "Enter Book Title: ";
+            std::getline(std::cin, title);
+            std::cout << "Enter Book Author: ";
+            std::getline(std::cin, author);
+            library.addBook(Book(id, title, author));
+            break;
+        }
+        case 2:
+            library.displayBooks();
+            break;
+        case 3: {
+            int id;
+            std::cout << "Enter Book ID to Borrow: ";
+            std::cin >> id;
+            library.borrowBook(id);
+            break;
+        }
+        case 4: {
+            int id;
+            std::cout << "Enter Book ID to Return: ";
+            std::cin >> id;
+            library.returnBook(id);
+            break;
+        }
+        case 5:
+            std::cout << "Exiting the system.\n";
+            break;
+        default:
+            std::cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 5);
+
+    return 0;
+}
+
