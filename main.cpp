@@ -24,87 +24,82 @@ public:
 
 class Library {
 private:
-    std::vector<Book> books;
+    vector<Book> books;
 
-    void loadbooks() {
-        std::ifstream file("books.txt");
-        if (file.is_open()) {
+    void loadBooks() {
+        ifstream file("books.txt");
+        if (file) {
             int id;
-            std::string title, author;
+            string title, author;
             bool is_borrowed;
-            while (file >> id >> std::ws && std::getline(file, title, '|') && std::getline(file, author, '|') && file >> is_borrowed) {
+            while (file >> id >> ws && getline(file, title, '|') && getline(file, author, '|') && file >> is_borrowed) {
                 books.emplace_back(id, title, author, is_borrowed);
             }
-            file.close();
         }
     }
 
-    void savebooks() const {
-        std::ofstream file("books.txt");
-        if (file.is_open()) {
+    void saveBooks() const {
+        ofstream file("books.txt");
+        if (file) {
             for (const auto& book : books) {
                 file << book.id << '|' << book.title << '|' << book.author << '|' << book.is_borrowed << '\n';
             }
-            file.close();
         }
     }
 
 public:
-    // Constructor
     Library() {
-        loadbooks();
+        loadBooks();
     }
-    
-    // Destructor
+
     ~Library() {
-        savebooks();
+        saveBooks();
     }
 
     void addBook(const Book& book) {
         books.push_back(book);
-        std::cout << "Book added successfully."\n
+        cout << "Book added successfully." << '\n';
     }
 
     void displayBooks() const {
         if (books.empty()) {
-            std::cout << "No books found in the libaary." << '\n';
+            cout << "No books found in the library." << '\n';
             return;
         }
-        for (const auto& book: books) {
+        for (const auto& book : books) {
             book.display();
         }
     }
 
     void borrowBook(int book_id) {
-        for (auto& book : books) {
-            if (book.id == book_id) {
-                if (!book.is_borrowed) {
-                    book.is_borrowed = true;
-                    std::cout << "You have borrowed the book: " << book.title << "\n";
-                } else {
-                    std::cout << "Sorry, the book is already borrowed.\n";
-                }
-                return;
+        auto it = find_if(books.begin(), books.end(), [book_id](const Book& book) { return book.id == book_id; });
+        if (it != books.end()) {
+            if (!it->is_borrowed) {
+                it->is_borrowed = true;
+                cout << "You have borrowed the book: " << it->title << '\n';
+            } else {
+                cout << "Sorry, the book is already borrowed." << '\n';
             }
+        } else {
+            cout << "Book with ID " << book_id << " not found." << '\n';
         }
-        std::cout << "Book with ID " << book_id << " not found.\n";
     }
 
     void returnBook(int book_id) {
-        for (auto& book : books) {
-            if (book.id == book_id) {
-                if (book.is_borrowed) {
-                    book.is_borrowed = false;
-                    std::cout << "You have returned the book: " << book.title << "\n";
-                } else {
-                    std::cout << "The book was not borrowed.\n";
-                }
-                return;
+        auto it = find_if(books.begin(), books.end(), [book_id](const Book& book) { return book.id == book_id; });
+        if (it != books.end()) {
+            if (it->is_borrowed) {
+                it->is_borrowed = false;
+                cout << "You have returned the book: " << it->title << '\n';
+            } else {
+                cout << "The book was not borrowed." << '\n';
             }
+        } else {
+            cout << "Book with ID " << book_id << " not found." << '\n';
         }
-        std::cout << "Book with ID " << book_id << " not found.\n";
     }
 };
+
 
 int main() {
     Library library;
