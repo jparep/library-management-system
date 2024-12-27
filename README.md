@@ -86,7 +86,7 @@ You have returned the book: The Great Gatsby
 All book data is stored in `books.txt`. The program automatically loads data from this file on startup and saves changes to it on exit.
 
 ## License
-This project is open-source and available under the MIT License.
+This project is open-source and available under the [MIT License](https://opensource.org/license/mit).
 
 ## Contributions
 Contributions are welcome! Please feel free to fork the repository, make improvements, and submit a pull request.
