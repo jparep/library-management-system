@@ -22,3 +22,8 @@ Thumbs.db
 *.swo
 .idea/
 *.iml
+
+# Igonore json file
+.json
+/*.json
+
